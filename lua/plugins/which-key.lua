@@ -9,6 +9,7 @@ return {
 				mode = { "n", "v" },
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>l", group = "LazyGit" },
+				{ "<leader>h", group = "Harpoon" },
 			},
 			{
 				"<leader>w",
