@@ -22,3 +22,4 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", {
 	desc = "Move selected lines up",
 	silent = true,
 })
+vim.keymap.set("v", "<C-y>", '"+y', { desc = "Copy to system clipboard" })
