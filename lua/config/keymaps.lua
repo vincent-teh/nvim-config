@@ -40,7 +40,9 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", {
 })
 vim.keymap.set("v", "<C-y>", '"+y', { desc = "Copy to system clipboard" })
 
-vim.keymap.set("n", "<leader>qb", "<cmd>bd<CR>", { desc = "Close current buffer" })
+-- buffer deletion was already mapped in which key.
+-- vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
+
 vim.keymap.set("n", "<leader>qq", function()
 	-- Gather unsaved buffers
 	local unsaved = {}
