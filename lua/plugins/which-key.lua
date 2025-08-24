@@ -10,6 +10,7 @@ return {
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>l", group = "LazyGit" },
 				{ "<leader>h", group = "Harpoon" },
+				{ "<leader>q", group = "Quit" },
 			},
 			{
 				"<leader>w",

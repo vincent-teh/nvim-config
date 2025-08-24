@@ -1,23 +1,28 @@
 return {
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
-    config = function()
-      local lspconfig = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+	{
+		"mason-org/mason.nvim",
+		opts = {},
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		opts = {
+			ensure_installed = {
+				"lua_ls",
+				"pyright",
+				"ts_ls",
+				"clangd",
+			},
+		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			local lspconfig = require("lspconfig")
 
-      -- Mason setup
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "pyright", "lua_ls", },
-      })
-      lspconfig.pyright.setup({ capabilities = capabilities } )
-      lspconfig.lua_ls.setup( { capabilities = capabilities } )
-    end,
-  },
+			lspconfig.lua_ls.setup({})
+			lspconfig.pyright.setup({})
+			lspconfig.ts_ls.setup({})
+			lspconfig.clangd.setup({})
+		end,
+	},
 }
