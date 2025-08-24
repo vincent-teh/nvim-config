@@ -12,14 +12,6 @@ return {
 				{ "<leader>h", group = "Harpoon" },
 				{ "<leader>q", group = "Quit" },
 			},
-			{
-				"<leader>w",
-				group = "windows",
-				proxy = "<c-w>",
-				expand = function()
-					return require("which-key.extras").expand.win()
-				end,
-			},
 		},
 	},
 }

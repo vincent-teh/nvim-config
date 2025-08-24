@@ -3,10 +3,11 @@ return {
 	version = "*",
 	opts = {
 		mappings = {
-			comment = "<leader>c", -- normal + visual, motion-based
-			comment_line = "<leader>cc", -- current line
-			comment_visual = "<leader>cv", -- visual selection
-			textobject = "gc", -- comment textobject like dgc
+			-- Only use classic 'gcc' for commenting the current line
+			comment_line = "gcc", -- normal mode, current line
+			comment = "gc", -- operator-pending, e.g., 'gcip' to comment a paragraph
+			comment_visual = "gc", -- visual mode
+			textobject = "gc", -- comment textobject (like dgc)
 		},
 	},
 }

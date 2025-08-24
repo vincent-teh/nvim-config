@@ -58,6 +58,8 @@ vim.keymap.set("n", "<leader>qq", function()
 
 	-- Go through each unsaved buffer one by one
 	for _, buf in ipairs(unsaved) do
+		vim.cmd("buffer " .. buf)
+
 		local name = vim.fn.bufname(buf)
 		if name == "" then
 			name = "[No Name]"
@@ -71,7 +73,7 @@ vim.keymap.set("n", "<leader>qq", function()
 			vim.cmd("buffer " .. buf)
 			vim.cmd("write")
 		elseif key == "d" then
-		-- do nothing, just skip to next
+			vim.cmd("bwipeout! " .. buf)
 		else
 			print("Quit cancelled")
 			return
