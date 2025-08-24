@@ -1,12 +1,45 @@
 return {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-	local builtin = require('telescope.builtin')
-	vim.keymap.set('n', '<leader> ', builtin.find_files, { desc = 'Telescope find files' })
-	vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-	vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-	vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })	
-    end
+	"nvim-telescope/telescope.nvim",
+	tag = "0.1.8",
+	dependencies = { "nvim-lua/plenary.nvim" },
+
+	-- Use `keys` so this overrides LazyVim's default <leader><space> binding.
+	keys = {
+		{
+			"<leader> ",
+			function()
+				local cwd = vim.g.startup_cwd or vim.fn.getcwd()
+				require("telescope.builtin").find_files({ cwd = cwd })
+			end,
+			desc = "Find files (startup dir)",
+		},
+		{
+			"<leader>fg",
+			function()
+				local cwd = vim.g.startup_cwd or vim.fn.getcwd()
+				require("telescope.builtin").live_grep({ cwd = cwd })
+			end,
+			desc = "Live grep (startup dir)",
+		},
+		-- keep these as-is if you want
+		{
+			"<leader>fb",
+			function()
+				require("telescope.builtin").buffers()
+			end,
+			desc = "Telescope buffers",
+		},
+		{
+			"<leader>fh",
+			function()
+				require("telescope.builtin").help_tags()
+			end,
+			desc = "Telescope help tags",
+		},
+	},
+
+	-- (optional) your normal telescope setup
+	config = function()
+		require("telescope").setup({})
+	end,
 }
