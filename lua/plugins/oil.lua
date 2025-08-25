@@ -36,14 +36,31 @@ return {
 				end
 			end, { desc = "Toggle Oil" })
 
+			-- vim.api.nvim_create_autocmd("VimEnter", {
+			-- 	callback = function()
+			-- 		local dir = vim.fn.isdirectory(vim.fn.expand("<amatch>"))
+			-- 		local args = vim.v.argv
+			-- 		local target = args[#args] -- last argument is usually the file/dir opened
+			-- 		if vim.fn.isdirectory(target) == 1 then
+			-- 			-- Open Oil in the directory
+			-- 			vim.cmd("cd " .. target)
+			-- 			vim.cmd("Oil")
+			-- 		end
+			-- 	end,
+			-- 	pattern = "*",
+			-- })
+			--
 			vim.api.nvim_create_autocmd("VimEnter", {
 				callback = function()
-					local dir = vim.fn.isdirectory(vim.fn.expand("<amatch>"))
-					local args = vim.v.argv
-					local target = args[#args] -- last argument is usually the file/dir opened
-					if vim.fn.isdirectory(target) == 1 then
-						-- Open Oil in the directory
-						vim.cmd("cd " .. target)
+					-- get the first argument passed to nvim
+					local target = vim.fn.argv(0)
+					if target == "" then
+						return
+					end
+					local fullpath = vim.fn.fnamemodify(target, ":p") -- expand to absolute path
+					if vim.fn.isdirectory(fullpath) == 1 then
+						-- Change to the directory
+						vim.cmd("cd " .. fullpath)
 						vim.cmd("Oil")
 					end
 				end,

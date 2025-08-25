@@ -38,7 +38,11 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", {
 	desc = "Move selected lines up",
 	silent = true,
 })
-vim.keymap.set("v", "<C-y>", '"+y', { desc = "Copy to system clipboard" })
+-- vim.keymap.set("v", "<C-y>", '"+y', { desc = "Copy to system clipboard" })
+vim.keymap.set("n", "Y", '"+y', { noremap = true, desc = "Yank to system clipboard" })
+vim.keymap.set("x", "Y", function()
+	vim.cmd('normal! "+y')
+end, { noremap = true, desc = "Yank selection to system clipboard" })
 
 -- buffer deletion was already mapped in which key.
 -- vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
