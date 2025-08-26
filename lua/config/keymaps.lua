@@ -44,8 +44,6 @@ vim.keymap.set("x", "Y", function()
 	vim.cmd('normal! "+y')
 end, { noremap = true, desc = "Yank selection to system clipboard" })
 
--- buffer deletion was already mapped in which key.
--- vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
 
 vim.keymap.set("n", "<leader>qq", function()
 	-- Gather unsaved buffers
@@ -89,3 +87,15 @@ vim.keymap.set("n", "<leader>qq", function()
 	-- After going through all buffers, quit
 	vim.cmd("qa")
 end, { desc = "Quit all buffers with per-buffer prompt" })
+
+vim.keymap.set("n", "<F3>", ":nohlsearch<CR>", { desc = "Clear search highlight" })
+
+-- Move between splits
+vim.keymap.set("n", "<c-h>", "<C-w>h", { desc = "Move to left split" })
+vim.keymap.set("n", "<c-j>", "<C-w>j", { desc = "Move to below split" })
+vim.keymap.set("n", "<c-k>", "<C-w>k", { desc = "Move to above split" })
+vim.keymap.set("n", "<c-l>", "<C-w>l", { desc = "Move to right split" })
+
+-- Buffers
+vim.keymap.set("n", "<leader>bb", "<cmd>b#<CR>", { desc = "Switch to last buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })

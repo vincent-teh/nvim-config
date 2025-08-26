@@ -1,6 +1,5 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufWritePre" }, -- Format on save
 	cmd = { "ConformInfo" },
 	opts = {
 		-- Formatters per language
@@ -21,12 +20,22 @@ return {
 			lsp_fallback = true,
 		},
 	},
+	keys = {
+		{
+			"<leader>lf",
+			function()
+				require("conform").format({ async = true, lsp_fallback = true })
+			end,
+			desc = "Format file or range",
+		},
+	},
 	config = function(_, opts)
-		require("conform").setup(opts)
+		local conform = require("conform")
+		conform.setup(opts)
 
 		-- Optional: manual format command
 		vim.api.nvim_create_user_command("Format", function()
-			require("conform").format({ async = true, lsp_fallback = true })
+			conform.format({ async = true, lsp_fallback = true })
 		end, { desc = "Format current buffer" })
 	end,
 }

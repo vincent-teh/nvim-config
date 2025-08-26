@@ -8,9 +8,10 @@ return {
 			{
 				mode = { "n", "v" },
 				{ "<leader>f", group = "file/find" },
-				{ "<leader>l", group = "LazyGit" },
+				{ "<leader>l", group = "LazyGit/LSP" },
 				{ "<leader>h", group = "Harpoon" },
 				{ "<leader>q", group = "Quit" },
+				{ "<leader>c", group = "Code" },
 			},
 			{
 				"<leader>b",
@@ -21,7 +22,7 @@ return {
 			},
 			{
 				"<leader>w",
-				group = "windows",
+				group = "window",
 				proxy = "<c-w>",
 				expand = function()
 					return require("which-key.extras").expand.win()

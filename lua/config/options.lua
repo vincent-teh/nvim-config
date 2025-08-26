@@ -12,3 +12,5 @@ vim.opt.listchars = {
 	nbsp = "␣", -- non-breaking spaces as ␣
 }
 vim.opt.signcolumn = "yes"
+vim.opt.ignorecase = true
+vim.opt.smartcase = true

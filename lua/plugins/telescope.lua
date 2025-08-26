@@ -6,7 +6,7 @@ return {
 	-- Use `keys` so this overrides LazyVim's default <leader><space> binding.
 	keys = {
 		{
-			"<leader> ",
+			"<leader>ff",
 			function()
 				local cwd = vim.g.startup_cwd or vim.fn.getcwd()
 				require("telescope.builtin").find_files({ cwd = cwd })
@@ -36,6 +36,13 @@ return {
 			end,
 			desc = "Telescope help tags",
 		},
+		{
+			"<leader>/",
+			function()
+				require("telescope.builtin").current_buffer_fuzzy_find()
+			end,
+			desc = 'Fuzzy find current buffer'
+		}
 	},
 
 	-- (optional) your normal telescope setup
