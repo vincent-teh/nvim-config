@@ -12,7 +12,7 @@ return {
 		end, { desc = "Harpoon add file" })
 
 		-- Toggle quick menu
-		vim.keymap.set("n", "<leader><space>", function()
+		vim.keymap.set("n", "<leader>hh", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end, { desc = "Harpoon quick menu" })
 

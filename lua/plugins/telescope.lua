@@ -6,7 +6,7 @@ return {
 	-- Use `keys` so this overrides LazyVim's default <leader><space> binding.
 	keys = {
 		{
-			"<leader>ff",
+			"<leader><space>",
 			function()
 				local cwd = vim.g.startup_cwd or vim.fn.getcwd()
 				require("telescope.builtin").find_files({ cwd = cwd })

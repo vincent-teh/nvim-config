@@ -38,11 +38,8 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", {
 	desc = "Move selected lines up",
 	silent = true,
 })
--- vim.keymap.set("v", "<C-y>", '"+y', { desc = "Copy to system clipboard" })
-vim.keymap.set("n", "Y", '"+y', { noremap = true, desc = "Yank to system clipboard" })
-vim.keymap.set("x", "Y", function()
-	vim.cmd('normal! "+y')
-end, { noremap = true, desc = "Yank selection to system clipboard" })
+vim.keymap.set("n", "<C-c>", '"+y', { noremap = true, desc = "Yank to system clipboard" })
+vim.keymap.set("x", "<C-c>", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
 
 
 vim.keymap.set("n", "<leader>qq", function()
