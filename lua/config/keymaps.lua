@@ -41,7 +41,6 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", {
 vim.keymap.set("n", "<C-c>", '"+y', { noremap = true, desc = "Yank to system clipboard" })
 vim.keymap.set("x", "<C-c>", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
 
-
 vim.keymap.set("n", "<leader>qq", function()
 	-- Gather unsaved buffers
 	local unsaved = {}
@@ -96,3 +95,15 @@ vim.keymap.set("n", "<c-l>", "<C-w>l", { desc = "Move to right split" })
 -- Buffers
 vim.keymap.set("n", "<leader>bb", "<cmd>b#<CR>", { desc = "Switch to last buffer" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
+
+-- open float diagnostic
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>d",
+	"<cmd>lua vim.diagnostic.open_float()<CR>",
+	{ noremap = true, silent = true, desc = "Floating diagnostic" }
+)
+
+-- Disable command line history and search history
+vim.api.nvim_set_keymap("n", "q:", "<nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "q/", "<nop>", { noremap = true, silent = true })

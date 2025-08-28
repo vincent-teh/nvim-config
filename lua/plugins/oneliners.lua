@@ -1,6 +1,8 @@
 return {
-	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
-
+	{
+		"windwp/nvim-autopairs",
+		config = true,
+	},
 	{
 		"saghen/blink.cmp",
 		build = "cargo build --release",

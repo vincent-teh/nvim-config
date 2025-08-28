@@ -16,7 +16,27 @@ return {
 				keymaps = {
 					["<CR>"] = "actions.select",
 					["-"] = "actions.parent",
-					["q"] = "actions.close",
+					["gd"] = function()
+						require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+					end,
+					["<leader>ff"] = {
+						function()
+							require("telescope.builtin").find_files({
+								cwd = require("oil").get_current_dir(),
+							})
+						end,
+						mode = "n",
+						nowait = true,
+						desc = "Find files in the current directory",
+					},
+					["<C-s>"] = function()
+						vim.cmd.write()
+					end,
+					["<C-h>"] = "<cmd>TmuxNavigateLeft<cr>",
+					["<C-j>"] = "<cmd>TmuxNavigateDown<cr>",
+					["<C-k>"] = "<cmd>TmuxNavigateUp<cr>",
+					["<C-l>"] = "<cmd>TmuxNavigateRight<cr>",
+					["<C-\\>"] = "<cmd>TmuxNavigatePrevious<cr>",
 				},
 				-- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
 				skip_confirm_for_simple_edits = false,
@@ -57,13 +77,13 @@ return {
 					if vim.fn.argc() == 0 and vim.fn.line2byte("$") == -1 then
 						return
 					end
-					
+
 					-- Get the first argument passed to nvim
 					local target = vim.fn.argv(0)
 					if target == "" then
 						return
 					end
-					
+
 					local fullpath = vim.fn.fnamemodify(target, ":p") -- expand to absolute path
 					if vim.fn.isdirectory(fullpath) == 1 then
 						-- Don't change directory, just open Oil with the target directory

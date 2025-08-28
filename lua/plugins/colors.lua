@@ -1,3 +1,41 @@
+local function lsp_clients()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local clients = vim.lsp.get_clients({ bufnr = bufnr })
+	if next(clients) == nil then
+		return "No LSP"
+	end
+
+	local client_names = {}
+	for _, client in pairs(clients) do
+		table.insert(client_names, client.name)
+	end
+	return " " .. table.concat(client_names, ", ")
+end
+
+
+local function formatters()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  if next(clients) == nil then
+    return "No Formatter"
+  end
+
+  local formatter_names = {}
+  for _, client in pairs(clients) do
+    -- You can fine-tune this if some clients are only formatters or if you know their names
+    if client.supports_method("textDocument/formatting") then
+      table.insert(formatter_names, client.name)
+    end
+  end
+
+  if #formatter_names == 0 then
+    return "No Formatter"
+  end
+
+  return " " .. table.concat(formatter_names, ", ")
+end
+
+
 return {
 	{
 		"folke/tokyonight.nvim",
@@ -42,11 +80,13 @@ return {
 			sections = {
 				lualine_c = {
 					{
-						'filename',
-						path = 1
-					}
-				}
-			}
+						"filename",
+						path = 1,
+					},
+				},
+				lualine_x = { lsp_clients, formatters },
+				lualine_y = { "filetype" },
+			},
 		},
 	},
 }
