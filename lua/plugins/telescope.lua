@@ -41,8 +41,24 @@ return {
 			function()
 				require("telescope.builtin").current_buffer_fuzzy_find()
 			end,
-			desc = 'Fuzzy find current buffer'
-		}
+			desc = "Fuzzy find current buffer",
+		},
+		{
+			"<leader>fF", -- capital F for find hidden files
+			function()
+				local cwd = vim.g.startup_cwd or vim.fn.getcwd()
+				require("telescope.builtin").find_files({ cwd = cwd, hidden = true })
+			end,
+			desc = "Find hidden files (startup dir)",
+		},
+		{
+			"<leader>fG", -- capital G for live grep hidden files
+			function()
+				local cwd = vim.g.startup_cwd or vim.fn.getcwd()
+				require("telescope.builtin").live_grep({ cwd = cwd, hidden = true })
+			end,
+			desc = "Live grep hidden files (startup dir)",
+		},
 	},
 
 	-- (optional) your normal telescope setup

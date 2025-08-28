@@ -107,3 +107,6 @@ vim.api.nvim_set_keymap(
 -- Disable command line history and search history
 vim.api.nvim_set_keymap("n", "q:", "<nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "q/", "<nop>", { noremap = true, silent = true })
+
+-- visual block mode
+vim.keymap.set("n", "gb", "<C-v>", { noremap = true, silent = true, desc = "Visual block mode" })
