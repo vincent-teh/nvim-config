@@ -1,6 +1,7 @@
 return {
 	{
 		"windwp/nvim-autopairs",
+		event = "InsertEnter",
 		config = true,
 	},
 	{
@@ -10,6 +11,7 @@ return {
 	{
 		"danymat/neogen",
 		config = true,
+		cmd = { "Neogen", "Neogen function" },
 		-- Uncomment next line if you want to follow only stable versions
 		version = "*",
 	},
@@ -20,6 +22,7 @@ return {
 		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
+		ft = { "markdown" },
 		opts = {},
 	},
 	{

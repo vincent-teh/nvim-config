@@ -1,6 +1,7 @@
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
+	events = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
 		-- Mason must be loaded before its dependents so we need to set it up here.
@@ -181,12 +182,14 @@ return {
 					},
 					python = {
 						analysis = {
-							ignore = { "*" }
-						}
-					}
-				}
+							ignore = { "*" },
+						},
+					},
+				},
 			},
 			ts_ls = {},
+			html = {},
+			cssls = {},
 			ruff = {},
 			dockerls = {},
 			yamlls = {},

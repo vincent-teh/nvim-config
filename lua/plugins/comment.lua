@@ -1,5 +1,6 @@
 return {
 	"echasnovski/mini.comment",
+	event = "InsertEnter",
 	version = "*",
 	opts = {
 		mappings = {
