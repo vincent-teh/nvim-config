@@ -43,6 +43,7 @@ local function recording_status()
 end
 
 return {
+	-- NOTES: lualine diff will flicker when hit reload before saving.
 	{
 		"folke/tokyonight.nvim",
 		enabled = false,
