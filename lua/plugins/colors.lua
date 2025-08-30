@@ -84,6 +84,61 @@ return {
 		},
 		opts = {
 			options = {
+				theme = function()
+					local mocha = require("catppuccin.palettes").get_palette("mocha")
+
+					local colors = {
+						black = mocha.base,
+						white = mocha.text,
+						red = mocha.red,
+						green = mocha.green,
+						yellow = mocha.yellow,
+						blue = mocha.blue,
+						magenta = mocha.mauve,
+						pink = mocha.pink,
+						gray = mocha.overlay0,
+						darkgray = mocha.overlay1,
+						lightgray = mocha.overlay2,
+						inactivegray = mocha.surface0,
+						bg_B = mocha.surface1,
+						bg_C = mocha.surface0,
+					}
+
+					local custom_theme = {
+						normal = {
+							a = { bg = colors.pink, fg = nil, gui = "bold" },
+							b = { bg = colors.bg_B, fg = nil },
+							c = { bg = colors.bg_C, fg = nil },
+						},
+						insert = {
+							a = { bg = colors.green, fg = colors.black, gui = "bold" },
+							b = { bg = colors.bg_B, fg = nil },
+							c = { bg = colors.bg_C, fg = nil },
+						},
+						visual = {
+							a = { bg = colors.blue, fg = colors.black, gui = "bold" },
+							b = { bg = colors.bg_B, fg = nil },
+							c = { bg = colors.bg_C, fg = nil },
+						},
+						replace = {
+							a = { bg = colors.red, fg = colors.black, gui = "bold" },
+							b = { bg = colors.bg_B, fg = nil },
+							c = { bg = colors.bg_C, fg = nil },
+						},
+						command = {
+							a = { bg = colors.yellow, fg = colors.black, gui = "bold" },
+							b = { bg = colors.bg_B, fg = nil },
+							c = { bg = colors.bg_C, fg = nil },
+						},
+						inactive = {
+							a = { bg = colors.inactivegray, fg = colors.gray, gui = "bold" },
+							b = { bg = colors.inactivegray, fg = colors.gray },
+							c = { bg = colors.inactivegray, fg = colors.gray },
+						},
+					}
+
+					return custom_theme
+				end,
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 			},
