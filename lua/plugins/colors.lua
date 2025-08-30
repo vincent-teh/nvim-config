@@ -22,7 +22,7 @@ local function formatters()
 	local formatter_names = {}
 	for _, client in pairs(clients) do
 		-- You can fine-tune this if some clients are only formatters or if you know their names
-		if client.supports_method("textDocument/formatting") then
+		if client:supports_method("textDocument/formatting") then
 			table.insert(formatter_names, client.name)
 		end
 	end
@@ -83,7 +83,10 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
-			theme = "rose-pine",
+			options = {
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+			},
 			sections = {
 				lualine_a = { "mode", recording_status },
 				lualine_b = { "branch", "diff" },
