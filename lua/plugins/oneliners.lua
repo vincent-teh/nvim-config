@@ -23,7 +23,11 @@ return {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		ft = { "markdown" },
-		opts = {},
+		config = function ()
+			require('render-markdown').setup({
+				win_options = {conceallevel = {rendered = 0}},
+			})
+		end
 	},
 	{
 		"iamcco/markdown-preview.nvim",
