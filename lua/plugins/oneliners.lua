@@ -23,11 +23,12 @@ return {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		ft = { "markdown" },
-		config = function ()
-			require('render-markdown').setup({
-				win_options = {conceallevel = {rendered = 0}},
+		config = function()
+			require("render-markdown").setup({
+				win_options = { conceallevel = { rendered = 0 } },
+				completions = { lsp = { enabled = true }, blink = { enabled = true } },
 			})
-		end
+		end,
 	},
 	{
 		"iamcco/markdown-preview.nvim",
