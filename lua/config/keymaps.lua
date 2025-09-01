@@ -1,47 +1,33 @@
-vim.g.mapleader = " "
--- vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "Open Netrw" })
-vim.keymap.set("n", "<leader>e", function()
-	if vim.bo.filetype == "netrw" then
-		-- Already in Netrw → go back to previous buffer
-		local prev_buf = vim.g.prev_buf_for_explorer
-		if prev_buf and vim.api.nvim_buf_is_loaded(prev_buf) then
-			vim.api.nvim_set_current_buf(prev_buf)
-		else
-			print("Netrw: no previous buffer to return to")
-		end
-	else
-		-- Not in Netrw → open Netrw and remember current buffer
-		vim.g.prev_buf_for_explorer = vim.api.nvim_get_current_buf()
-		vim.cmd("Explore")
-	end
-end, { desc = "Toggle Netrw" })
+local map = vim.keymap.set
 
-vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode with jk" })
-vim.keymap.set({ "n", "i" }, "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true, desc = "Save file" })
+vim.g.mapleader = " "
+
+map("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode with jk" })
+map({ "n", "i" }, "<C-s>", "<Esc>:w<CR>", { noremap = true, silent = true, desc = "Save file" })
 
 -- Move line down
-vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", {
+map("n", "<A-Down>", ":m .+1<CR>==", {
 	desc = "Move current line down",
 	silent = true,
 })
-vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", {
+map("v", "<A-Down>", ":m '>+1<CR>gv=gv", {
 	desc = "Move selected lines down",
 	silent = true,
 })
 
--- Move line up
-vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", {
+map("n", "<A-Up>", ":m .-2<CR>==", {
 	desc = "Move current line up",
 	silent = true,
 })
-vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", {
+map("v", "<A-Up>", ":m '<-2<CR>gv=gv", {
 	desc = "Move selected lines up",
 	silent = true,
 })
-vim.keymap.set("n", "<C-c>", '"+y', { noremap = true, desc = "Yank to system clipboard" })
-vim.keymap.set("x", "<C-c>", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
 
-vim.keymap.set("n", "<leader>qq", function()
+map("n", "<C-c>", '"+y', { noremap = true, desc = "Yank to system clipboard" })
+map("x", "<C-c>", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
+
+map("n", "<leader>qq", function()
 	-- Gather unsaved buffers
 	local unsaved = {}
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -84,17 +70,17 @@ vim.keymap.set("n", "<leader>qq", function()
 	vim.cmd("qa")
 end, { desc = "Quit all buffers with per-buffer prompt" })
 
-vim.keymap.set("n", "<F3>", ":nohlsearch<CR>", { desc = "Clear search highlight" })
+map("n", "<F3>", ":nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- Move between splits
-vim.keymap.set("n", "<c-h>", "<C-w>h", { desc = "Move to left split" })
-vim.keymap.set("n", "<c-j>", "<C-w>j", { desc = "Move to below split" })
-vim.keymap.set("n", "<c-k>", "<C-w>k", { desc = "Move to above split" })
-vim.keymap.set("n", "<c-l>", "<C-w>l", { desc = "Move to right split" })
+map("n", "<c-h>", "<C-w>h", { desc = "Move to left split" })
+map("n", "<c-j>", "<C-w>j", { desc = "Move to below split" })
+map("n", "<c-k>", "<C-w>k", { desc = "Move to above split" })
+map("n", "<c-l>", "<C-w>l", { desc = "Move to right split" })
 
 -- Buffers
-vim.keymap.set("n", "<leader>bb", "<cmd>b#<CR>", { desc = "Switch to last buffer" })
-vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
+map("n", "<leader>bb", "<cmd>b#<CR>", { desc = "Switch to last buffer" })
+map("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close current buffer" })
 
 -- open float diagnostic
 vim.api.nvim_set_keymap(
@@ -105,8 +91,8 @@ vim.api.nvim_set_keymap(
 )
 
 -- Disable command line history and search history
-vim.api.nvim_set_keymap("n", "q:", "<nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "q/", "<nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "q", "<nop>", { noremap = true, silent = true })
+map("n", "<c-q>", "q", { noremap = true, silent = true, desc = "Macro"})
 
 -- visual block mode
-vim.keymap.set("n", "gb", "<C-v>", { noremap = true, silent = true, desc = "Visual block mode" })
+map("n", "gb", "<C-v>", { noremap = true, silent = true, desc = "Visual block mode" })
