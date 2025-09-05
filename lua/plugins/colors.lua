@@ -107,7 +107,7 @@ return {
 
 					local custom_theme = {
 						normal = {
-							a = { bg = colors.pink, fg = nil, gui = "bold" },
+							a = { bg = colors.pink, fg = colors.black, gui = "bold" },
 							b = { bg = colors.bg_B, fg = nil },
 							c = { bg = colors.bg_C, fg = nil },
 						},
