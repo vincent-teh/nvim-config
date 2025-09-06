@@ -40,15 +40,13 @@ return {
 			col = 1,
 		},
 		on_attach = function(bufnr)
+			local map = vim.keymap.set
 			local gs = package.loaded.gitsigns
-			vim.keymap.set(
-				"n",
-				"<leader>gh",
-				gs.preview_hunk,
-				{ buffer = bufnr, desc = "Preview Git hunk in floating window" }
-			)
-			vim.keymap.set("n", "<leader>gH", gs.preview_hunk, { buffer = bufnr, desc = "Preview Git hunk inline" })
-			vim.keymap.set("n", "]gh", function()
+
+			map("n", "<leader>gh", gs.preview_hunk, { buffer = bufnr, desc = "Preview Git hunk in floating window" })
+			-- map("n", "<leader>gH", gs.preview_hunk, { buffer = bufnr, desc = "Preview Git hunk inline" })
+
+			map("n", "]g", function()
 				if vim.wo.diff then
 					vim.cmd.normal({ "]c", bang = true })
 				else
@@ -56,13 +54,19 @@ return {
 				end
 			end, { buffer = bufnr, desc = "Next Git hunk" })
 
-			vim.keymap.set("n", "[gh", function()
+			map("n", "[g", function()
 				if vim.wo.diff then
 					vim.cmd.normal({ "[c", bang = true })
 				else
 					require("gitsigns").nav_hunk("prev")
 				end
 			end, { buffer = bufnr, desc = "Previous Git hunk" })
+
+			-- Reset current hunk
+			map("n", "<leader>gr", gs.reset_hunk, { buffer = bufnr, desc="[g]it [r]eset current hunk"})
+			map("v", "<leader>gr", function()
+				gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end, { buffer = bufnr, desc="[g]it [r]eset current hunk"})
 		end,
 	},
 }
