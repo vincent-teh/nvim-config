@@ -92,6 +92,7 @@ return {
 						black = mocha.base,
 						white = mocha.text,
 						red = mocha.red,
+						peach = mocha.peach,
 						green = mocha.green,
 						yellow = mocha.yellow,
 						blue = mocha.blue,
