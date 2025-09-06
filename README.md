@@ -9,6 +9,8 @@ nvim
 - [jesseduffield/lazygit](https://github.com/jesseduffield/lazygit.git)
 - fd (`sudo apt install fd-find`)
 - tmux
+- nodejs
+- npm
 
 # References
 Goated [ChatGPT](WWW.chatgpt.com) for debugging. Although gaves a lot of erros as well.
