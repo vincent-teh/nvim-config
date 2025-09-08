@@ -201,6 +201,7 @@ return {
 				},
 			},
 			ts_ls = {},
+			clangd = {},
 			html = {},
 			cssls = {},
 			ruff = {},
