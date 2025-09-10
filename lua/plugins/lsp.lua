@@ -30,10 +30,7 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
-				-- NOTE: Remember that Lua is a real programming language, and as such it is possible
-				-- to define small helper and utility functions so you don't have to repeat yourself.
-				--
-				-- In this case, we create a function that lets us more easily define mappings specific
+				-- A function that lets us more easily define mappings specific
 				-- for LSP related items. It sets the mode, buffer and description for us each time.
 				local map = function(keys, func, desc, mode)
 					mode = mode or "n"
@@ -76,6 +73,9 @@ return {
 				--  Useful when you're not sure what type a variable is and you want to see
 				--  the definition of its *type*, not where it was *defined*.
 				map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
+
+				-- Signature help (function arguments)
+				map("<C-k>", vim.lsp.buf.signature_help, "Signature help", "i")
 
 				-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
 				---@param client vim.lsp.Client
@@ -204,7 +204,14 @@ return {
 			clangd = {},
 			html = {},
 			cssls = {},
-			ruff = {},
+			ruff = {
+				on_attach = function(client, bufnr)
+					-- Ruff doesn’t really need these anyway
+					client.server_capabilities.workspace = nil
+					client.server_capabilities.didChangeConfigurationProvider = nil
+					client.server_capabilities.hoverProvider = false
+				end,
+			},
 			dockerls = {},
 			yamlls = {},
 			jsonls = {},
