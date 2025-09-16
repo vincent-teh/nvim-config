@@ -89,23 +89,27 @@ return {
 	},
 	--
 	-- (optional) your normal telescope setup
-	config = function()
-		local telescope = require("telescope")
-		telescope.setup({
-			extensions = {
-				frecency = {
-					show_scores = true,
-					show_unindexed = true,
-					ignore_patterns = { "*.git/*", "*/tmp/*" },
-					workspaces = {
-						conf = vim.fn.stdpath("config"),
-						data = vim.fn.stdpath("data"),
-						project = "~/projects",
-					},
+	opts = {
+		defaults = {
+			-- other defaults...
+			layout_strategy = "flex", -- optional, depends on what layout you want
+		},
+		pickers = {
+			find_files = {
+				theme = "ivy",
+			},
+		},
+		extensions = {
+			frecency = {
+				show_scores = true,
+				show_unindexed = true,
+				ignore_patterns = { "*.git/*", "*/tmp/*" },
+				workspaces = {
+					conf = vim.fn.stdpath("config"),
+					data = vim.fn.stdpath("data"),
+					project = "~/projects",
 				},
 			},
-		})
-
-		telescope.load_extension("frecency")
-	end,
+		},
+	},
 }
