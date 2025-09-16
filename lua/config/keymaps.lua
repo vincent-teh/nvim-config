@@ -24,15 +24,14 @@ map("v", "<A-Up>", ":m '<-2<CR>gv=gv", {
 	silent = true,
 })
 
-map("n", "<C-c>", '"+y', { noremap = true, desc = "Yank to system clipboard" })
-map("x", "<C-c>", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
+map("n", "y", '"+y', { noremap = true, desc = "Yank to system clipboard" })
+map("x", "y", '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
 
 map("n", "<leader>qq", function()
 	-- Gather unsaved buffers
 	local unsaved = {}
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.api.nvim_get_option_value("modified", { buf = buf }) and vim.api.nvim_get_option_value("buflisted", { buf = buf }) then
-		-- if vim.api.nvim_buf_get_option(buf, "modified") and vim.api.nvim_buf_get_option(buf, "buflisted") then
 			table.insert(unsaved, buf)
 		end
 	end

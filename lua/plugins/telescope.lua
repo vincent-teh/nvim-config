@@ -1,15 +1,22 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.8",
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		{
+			"nvim-telescope/telescope-frecency.nvim",
+			version = "*",
+		},
+	},
 
 	-- Use `keys` so this overrides LazyVim's default <leader><space> binding.
 	keys = {
 		{
 			"<leader><space>",
 			function()
-				local cwd = vim.g.startup_cwd or vim.fn.getcwd()
-				require("telescope.builtin").find_files({ cwd = cwd })
+				require("telescope").extensions.frecency.frecency({
+					workspace = "CWD", -- search relative to cwd
+				})
 			end,
 			desc = "Find files (startup dir)",
 		},
@@ -59,10 +66,46 @@ return {
 			end,
 			desc = "Live grep hidden files (startup dir)",
 		},
+		{
+			"<leader>fs",
+			function()
+				require("telescope.builtin").lsp_document_symbols({
+					-- pass the encoding from the first client
+					symbols = nil,
+					position_encoding = "utf-16", -- most language servers default to utf-16
+				})
+			end,
+			desc = "LSP document symbols",
+		},
+		{
+			"<leader>fS",
+			function()
+				require("telescope.builtin").lsp_workspace_symbols({
+					position_encoding = "utf-16",
+				})
+			end,
+			desc = "LSP workspace symbols",
+		},
 	},
-
+	--
 	-- (optional) your normal telescope setup
 	config = function()
-		require("telescope").setup({})
+		local telescope = require("telescope")
+		telescope.setup({
+			extensions = {
+				frecency = {
+					show_scores = true,
+					show_unindexed = true,
+					ignore_patterns = { "*.git/*", "*/tmp/*" },
+					workspaces = {
+						conf = vim.fn.stdpath("config"),
+						data = vim.fn.stdpath("data"),
+						project = "~/projects",
+					},
+				},
+			},
+		})
+
+		telescope.load_extension("frecency")
 	end,
 }

@@ -19,3 +19,18 @@ vim.diagnostic.config({
 	update_in_insert = false,
 	severity_sort = true,
 })
+
+local servers = {
+	"pyright",
+	"ts_ls",
+	"clangd",
+	"html",
+	"ruff",
+	"dockerls",
+	"yamlls",
+	"jsonls",
+	"bashls",
+	"lua_ls",
+}
+
+vim.lsp.enable(servers)
