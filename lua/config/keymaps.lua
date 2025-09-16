@@ -31,7 +31,8 @@ map("n", "<leader>qq", function()
 	-- Gather unsaved buffers
 	local unsaved = {}
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_buf_get_option(buf, "modified") and vim.api.nvim_buf_get_option(buf, "buflisted") then
+		if vim.api.nvim_get_option_value("modified", { buf = buf }) and vim.api.nvim_get_option_value("buflisted", { buf = buf }) then
+		-- if vim.api.nvim_buf_get_option(buf, "modified") and vim.api.nvim_buf_get_option(buf, "buflisted") then
 			table.insert(unsaved, buf)
 		end
 	end
@@ -73,10 +74,12 @@ end, { desc = "Quit all buffers with per-buffer prompt" })
 map("n", "<F3>", ":nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- Move between splits
-map("n", "<c-h>", "<C-w>h", { desc = "Move to left split" })
-map("n", "<c-j>", "<C-w>j", { desc = "Move to below split" })
-map("n", "<c-k>", "<C-w>k", { desc = "Move to above split" })
-map("n", "<c-l>", "<C-w>l", { desc = "Move to right split" })
+map("n", "<C-h>", "<C-w>h", { noremap = true, desc = "Move to left split" })
+map("n", "<C-j>", "<C-w>j", { noremap = true, desc = "Move to below split" })
+map("n", "<C-k>", "<C-w>k", { noremap = true, desc = "Move to above split" })
+map("n", "<C-l>", "<C-w>l", { noremap = true, desc = "Move to right split" })
+map("n", "<C-w>\\", "<C-w>v", { noremap = true, desc = "Split window vertically" })
+map("n", "<C-w>|", "<C-w>s", { noremap = true, desc = "Split window" })
 
 -- Buffers
 map("n", "<leader>bb", "<cmd>b#<CR>", { desc = "Switch to last buffer" })
