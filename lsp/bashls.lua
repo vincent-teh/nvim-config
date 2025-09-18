@@ -9,7 +9,7 @@
 ---
 --- Language server for bash, written using tree sitter in typescript.
 
-local mason_path = "/home/dunno/.local/share/nvim/mason/packages/bash-language-server/node_modules/.bin/"
+local mason_path = vim.fn.stdpath("data") .. "/mason/packages/bash-language-server/node_modules/.bin/"
 ---@type vim.lsp.Config
 return {
   cmd = { mason_path .. 'bash-language-server', 'start' },

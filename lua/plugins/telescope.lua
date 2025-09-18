@@ -1,3 +1,4 @@
+local actions = require("telescope.actions")
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.8",
@@ -93,10 +94,11 @@ return {
 		defaults = {
 			-- other defaults...
 			layout_strategy = "flex", -- optional, depends on what layout you want
-		},
-		pickers = {
-			find_files = {
-				theme = "ivy",
+			mappings = {
+				n = {
+					["J"] = actions.preview_scrolling_down,
+					["K"] = actions.preview_scrolling_up,
+				},
 			},
 		},
 		extensions = {

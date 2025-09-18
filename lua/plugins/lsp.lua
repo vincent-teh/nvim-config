@@ -14,6 +14,7 @@ return {
 		-- Useful status updates for LSP.
 		{
 			"j-hui/fidget.nvim",
+			enabled = false,
 			opts = {
 				notification = {
 					window = {
