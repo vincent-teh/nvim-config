@@ -1,7 +1,7 @@
 local actions = require("telescope.actions")
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.8",
+	branch = "master",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{
@@ -87,6 +87,16 @@ return {
 			end,
 			desc = "LSP workspace symbols",
 		},
+		{
+			"<leader>fb",
+			function()
+				require("telescope.builtin").buffers({
+					sort_mru = true, -- show most recently used first
+					ignore_current_buffer = true, -- don’t show current buffer
+				})
+			end,
+			desc = "Find open buffers",
+		},
 	},
 	--
 	-- (optional) your normal telescope setup
@@ -98,6 +108,7 @@ return {
 				n = {
 					["J"] = actions.preview_scrolling_down,
 					["K"] = actions.preview_scrolling_up,
+					["q"] = actions.close,
 				},
 			},
 		},
