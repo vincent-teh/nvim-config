@@ -111,6 +111,13 @@ return {
 					["q"] = actions.close,
 				},
 			},
+			file_ignore_patterns = {
+				"%.png", "%.jpg", "%.jpeg", "%.gif", "%.bmp",
+				"%.exe", "%.dll", "%.so", "%.dylib",
+				"%.o", "%.a", "%.out",
+				"%.pdf",
+				"node_modules", "__pycache__"
+			},
 		},
 		extensions = {
 			frecency = {

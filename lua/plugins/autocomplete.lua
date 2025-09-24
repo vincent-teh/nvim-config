@@ -24,7 +24,7 @@ return { -- Autocompletion
 			opts = {},
 			config = function()
 				-- require("luasnip.loaders.from_vscode").lazy_load()
-				require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/snippets" })
+				require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/lua/snippets" } })
 			end,
 		},
 		{
@@ -88,12 +88,12 @@ return { -- Autocompletion
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
 			preset = "default",
-			["<S-Tab>"] = { "select_prev", "fallback_to_mappings" },
-			["<Tab>"] = { "select_next", "fallback_to_mappings" },
-			["<C-n>"] = { "snippet_forward", "fallback" },
-			["<C-N>"] = { "snippet_backward", "fallback" },
+			-- ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+			-- ["<C-P>"] = { "select_next", "fallback_to_mappings" },
+			["<A-n>"] = { "snippet_forward", "fallback" },
+			["<A-N>"] = { "snippet_backward", "fallback" },
 			["<K>"] = { "show_signature", "hide_signature", "fallback" },
-			["<Cr>"] = { "select_and_accept", "fallback" },
+			["<Tab>"] = { "select_and_accept", "fallback" },
 		},
 
 		appearance = {
@@ -109,7 +109,7 @@ return { -- Autocompletion
 		},
 
 		sources = {
-			default = { "lsp", "path", "snippets", "lazydev", "buffer" },
+			default = { "snippets", "lsp", "path", "lazydev", "buffer" },
 			providers = {
 				lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
 			},

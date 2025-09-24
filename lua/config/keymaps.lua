@@ -31,7 +31,10 @@ map("n", "<leader>qq", function()
 	-- Gather unsaved buffers
 	local unsaved = {}
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_get_option_value("modified", { buf = buf }) and vim.api.nvim_get_option_value("buflisted", { buf = buf }) then
+		if
+			vim.api.nvim_get_option_value("modified", { buf = buf })
+			and vim.api.nvim_get_option_value("buflisted", { buf = buf })
+		then
 			table.insert(unsaved, buf)
 		end
 	end
@@ -94,7 +97,7 @@ vim.api.nvim_set_keymap(
 
 -- Disable command line history and search history
 vim.api.nvim_set_keymap("n", "q", "<nop>", { noremap = true, silent = true })
-map("n", "<c-q>", "q", { noremap = true, silent = true, desc = "Macro"})
+map("n", "<c-q>", "q", { noremap = true, silent = true, desc = "Macro" })
 
 -- visual block mode
 map("n", "gb", "<C-v>", { noremap = true, silent = true, desc = "Visual block mode" })
