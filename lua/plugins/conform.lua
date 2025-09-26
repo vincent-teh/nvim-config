@@ -13,6 +13,15 @@ return {
 			html = { "prettier" },
 			css = { "prettier" },
 			sh = { "shfmt" },
+			c = { "astyle" },
+			cpp = { "astyle" },
+			cuda = { "astyle" },
+		},
+		formatters = {
+			astyle = {
+				command = "astyle",
+				args = { "--style=linux" },
+			},
 		},
 		-- Global options
 		format_on_save = {

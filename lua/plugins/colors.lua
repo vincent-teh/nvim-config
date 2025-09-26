@@ -15,15 +15,27 @@ end
 local function formatters()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local clients = vim.lsp.get_clients({ bufnr = bufnr })
-	if next(clients) == nil then
-		return "No Formatter"
-	end
+	-- if next(clients) == nil then
+	-- 	return "No Formatter"
+	-- end
 
 	local formatter_names = {}
 	for _, client in pairs(clients) do
 		-- You can fine-tune this if some clients are only formatters or if you know their names
 		if client:supports_method("textDocument/formatting") then
 			table.insert(formatter_names, client.name)
+		end
+	end
+
+	local ok, conform = pcall(require, "conform")
+	if ok then
+		local conform_infos = conform.list_formatters(bufnr)
+		if conform_infos then
+			for _, info in ipairs(conform_infos) do
+				if info.available ~= false then
+					table.insert(formatter_names, info.name)
+				end
+			end
 		end
 	end
 
