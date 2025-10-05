@@ -3,7 +3,6 @@ return { -- Autocompletion
 	event = "InsertEnter",
 	version = "1.*",
 	dependencies = {
-		-- Snippet Engine
 		{
 			"L3MON4D3/LuaSnip",
 			version = "2.*",
@@ -16,14 +15,8 @@ return { -- Autocompletion
 				end
 				return "make install_jsregexp"
 			end)(),
-			dependencies = {
-				-- `friendly-snippets` contains a variety of premade snippets.
-				--    See the README about individual language/framework/plugin snippets:
-				--    https://github.com/rafamadriz/friendly-snippets
-			},
 			opts = {},
 			config = function()
-				-- require("luasnip.loaders.from_vscode").lazy_load()
 				require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/lua/snippets" } })
 			end,
 		},
@@ -105,7 +98,20 @@ return { -- Autocompletion
 		completion = {
 			-- By default, you may press `<c-space>` to show the documentation.
 			-- Optionally, set `auto_show = true` to show the documentation after a delay.
-			documentation = { auto_show = false, auto_show_delay_ms = 500 },
+			-- documentation = { auto_show = false, auto_show_delay_ms = 500 },
+			documentation = {
+				auto_show = true,
+				auto_show_delay_ms = 200,
+				window = {
+					border = "rounded",
+					winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+				},
+			},
+			menu = {
+				border = "rounded",
+				draw = { gap = 2 },
+				winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
+			},
 		},
 
 		sources = {

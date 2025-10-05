@@ -32,6 +32,7 @@ local servers = {
 	"bashls",
 	"lua_ls",
 	"ltex_plus",
+	"cmake",
 }
 
 vim.lsp.enable(servers)

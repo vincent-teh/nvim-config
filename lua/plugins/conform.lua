@@ -20,7 +20,7 @@ return {
 		formatters = {
 			astyle = {
 				command = "astyle",
-				args = { "--style=linux" },
+				args = { "--style=linux", "--max-code-length=80" },
 			},
 		},
 		-- Global options

@@ -101,3 +101,5 @@ map("n", "<c-q>", "q", { noremap = true, silent = true, desc = "Macro" })
 
 -- visual block mode
 map("n", "gb", "<C-v>", { noremap = true, silent = true, desc = "Visual block mode" })
+
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })

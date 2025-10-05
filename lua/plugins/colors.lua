@@ -15,9 +15,9 @@ end
 local function formatters()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local clients = vim.lsp.get_clients({ bufnr = bufnr })
-	-- if next(clients) == nil then
-	-- 	return "No Formatter"
-	-- end
+	if next(clients) == nil then
+		return "No Formatter"
+	end
 
 	local formatter_names = {}
 	for _, client in pairs(clients) do
