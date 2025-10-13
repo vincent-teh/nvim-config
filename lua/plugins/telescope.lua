@@ -17,7 +17,7 @@ return {
 			function()
 				require("telescope").extensions.frecency.frecency({
 					workspace = "CWD", -- search relative to cwd
-					file_ignore_patterns = { "build*", "*.o" },
+					file_ignore_patterns = { "build*", "*.o", ".venv", "*.pyc" },
 				})
 			end,
 			desc = "Find files (startup dir)",
