@@ -65,7 +65,7 @@ end
 
 ---@type vim.lsp.Config
 return {
-	cmd = { "clangd" },
+	cmd = { "clangd", "--query-driver=/usr/bin/clang++,/usr/local/cuda/bin/nvcc" },
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	root_markers = {
 		".clangd",

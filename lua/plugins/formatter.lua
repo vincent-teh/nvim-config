@@ -4,18 +4,19 @@ return {
 	opts = {
 		-- Formatters per language
 		formatters_by_ft = {
-			lua = { "stylua" },
-			python = { "black" },
-			javascript = { "prettier" },
-			typescript = { "prettier" },
-			json = { "prettier" },
-			yaml = { "prettier" },
-			html = { "prettier" },
-			css = { "prettier" },
-			sh = { "shfmt" },
 			c = { "astyle" },
 			cpp = { "astyle" },
 			cuda = { "astyle" },
+			css = { "prettier" },
+			html = { "prettier" },
+			json = { "prettier" },
+			javascript = { "prettier" },
+			lua = { "stylua" },
+			python = { "black" },
+			sh = { "shfmt" },
+			typescript = { "prettier" },
+			typst = { "typstyle" },
+			yaml = { "prettier" },
 		},
 		formatters = {
 			astyle = {

@@ -21,18 +21,18 @@ vim.diagnostic.config({
 })
 
 local servers = {
-	"pyright",
-	"ts_ls",
-	"clangd",
-	"html",
-	"ruff",
-	"dockerls",
-	"yamlls",
-	"jsonls",
 	"bashls",
-	"lua_ls",
-	"ltex_plus",
+	"clangd",
 	"cmake",
+	"dockerls",
+	"html",
+	"jsonls",
+	"ltex_plus",
+	"lua_ls",
+	"pyright",
+	"tinymist",
+	"ts_ls",
+	"yamlls",
 }
 
 vim.lsp.enable(servers)
