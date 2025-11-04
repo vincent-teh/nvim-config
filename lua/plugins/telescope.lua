@@ -105,6 +105,19 @@ return {
 		defaults = {
 			-- other defaults...
 			layout_strategy = "flex", -- optional, depends on what layout you want
+			layout_config = {
+				flex = {
+					flip_columns = 120, -- if window width < 120 cols → vertical
+					flip_lines = 40, -- if window height < 40 lines → horizontal
+				},
+				horizontal = { preview_width = 0.6, prompt_position = "top" },
+				vertical = { preview_height = 0.6, prompt_position = "top" },
+				width = 200,
+				height = 0.9999,
+			},
+			sorting_strategy = "ascending",
+			path_display = { "truncate" },
+
 			mappings = {
 				n = {
 					["J"] = actions.preview_scrolling_down,
