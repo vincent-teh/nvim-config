@@ -7,20 +7,31 @@
 --- `gitlab-ci-ls` can be installed via cargo:
 --- cargo install gitlab-ci-ls
 
-local util = require 'lspconfig.util'
+-- local util = require("lspconfig.util")
 
-local cache_dir = vim.uv.os_homedir() .. '/.cache/gitlab-ci-ls/'
+local cache_dir = vim.uv.os_homedir() .. "/.cache/gitlab-ci-ls/"
 
 ---@type vim.lsp.Config
 return {
-  cmd = { 'gitlab-ci-ls' },
-  filetypes = { 'yaml.gitlab' },
-  root_dir = function(bufnr, on_dir)
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    on_dir(util.root_pattern('.git', '.gitlab*')(fname))
-  end,
-  init_options = {
-    cache_path = cache_dir,
-    log_path = cache_dir .. '/log/gitlab-ci-ls.log',
-  },
+	cmd = { "gitlab-ci-ls" },
+	filetypes = { "yaml.gitlab" },
+	-- root_dir = function(bufnr, on_dir)
+	--   local fname = vim.api.nvim_buf_get_name(bufnr)
+	--   on_dir(util.root_pattern('.git', '.gitlab*')(fname))
+	-- end,
+	--
+	root_dir = function(bufnr, on_dir)
+		local fname = vim.api.nvim_buf_get_name(bufnr)
+		local dir = vim.fs.dirname(fname)
+
+		local root = vim.fs.find({ ".git", ".gitlab-ci.yml", ".gitlab" }, { upward = true, path = dir })[1]
+		if root then
+			on_dir(vim.fs.dirname(root))
+		end
+	end,
+
+	init_options = {
+		cache_path = cache_dir,
+		log_path = cache_dir .. "/log/gitlab-ci-ls.log",
+	},
 }

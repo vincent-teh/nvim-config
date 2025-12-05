@@ -14,5 +14,8 @@ return {
 		presets = {
 			command_palette = true,
 		},
+		notify = {
+			enabled = false,
+		},
 	},
 }

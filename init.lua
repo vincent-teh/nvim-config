@@ -21,11 +21,13 @@ vim.diagnostic.config({
 })
 
 local servers = {
+	"autotools_ls",
 	"bashls",
 	"clangd",
 	"cmake",
 	"dockerls",
 	"html",
+	"gitlab_ci_ls",
 	"jsonls",
 	"ltex_plus",
 	"lua_ls",

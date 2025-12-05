@@ -14,3 +14,4 @@ vim.opt.listchars = {
 vim.opt.signcolumn = "yes"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.colorcolumn = "100"

@@ -12,6 +12,7 @@ return {
 			json = { "prettier" },
 			javascript = { "prettier" },
 			lua = { "stylua" },
+			markdown = { "prettier" },
 			python = { "black" },
 			sh = { "shfmt" },
 			typescript = { "prettier" },
