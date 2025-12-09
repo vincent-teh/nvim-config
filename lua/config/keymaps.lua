@@ -103,3 +103,16 @@ map("n", "<c-q>", "q", { noremap = true, silent = true, desc = "Macro" })
 map("n", "gb", "<C-v>", { noremap = true, silent = true, desc = "Visual block mode" })
 
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+
+-- Kiro integration
+local kiro = require("config.kiro")
+map("v", "<leader>ks", kiro.send_selection, { desc = "Send selection to Kiro" })
+map("n", "<leader>kb", kiro.send_buffer, { desc = "Send buffer to Kiro" })
+map("n", "<leader>kf", kiro.fix_lsp_error, { desc = "Fix LSP error with Kiro" })
+map("n", "<leader>ka", function()
+	vim.ui.input({ prompt = "Ask Kiro: " }, function(input)
+		if input then
+			kiro.ask(input)
+		end
+	end)
+end, { desc = "Ask Kiro" })

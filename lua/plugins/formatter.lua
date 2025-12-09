@@ -11,7 +11,7 @@ return {
 			html = { "prettier" },
 			json = { "prettier" },
 			javascript = { "prettier" },
-			lua = { "stylua" },
+			lua = { "lua_ls" },
 			markdown = { "prettier" },
 			python = { "black" },
 			sh = { "shfmt" },
