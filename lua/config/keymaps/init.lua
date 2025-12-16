@@ -1,4 +1,4 @@
--- Load organized keymaps
+-- Load all keymap modules
 require("config.keymaps.basic")
 require("config.keymaps.editing")
 require("config.keymaps.navigation")
