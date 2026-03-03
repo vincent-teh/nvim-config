@@ -20,6 +20,9 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
+-- Disable LSP progress notifications
+vim.lsp.handlers["$/progress"] = function() end
+
 local servers = {
 	"autotools_ls",
 	"bashls",
@@ -32,6 +35,8 @@ local servers = {
 	"ltex_plus",
 	"lua_ls",
 	"pyright",
+	"taplo",
+	"texlab",
 	"tinymist",
 	"ts_ls",
 	"yamlls",
