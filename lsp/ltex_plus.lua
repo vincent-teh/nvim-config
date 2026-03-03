@@ -61,6 +61,17 @@ return {
   end,
   settings = {
     ltex = {
+      language = 'en-GB',
+	  completionEnabled = true,
+      dictionary = {
+        ['en-GB'] = { 
+          vim.fn.stdpath('config') .. '/.ltex/dictionary.txt',
+          ':' .. vim.fn.getcwd() .. '/.ltex/dictionary.txt',
+        },
+      },
+      disabledRules = {
+        ['en-US'] = { 'MORFOLOGIK_RULE_EN_US' },
+      },
       enabled = {
         'bib',
         'context',

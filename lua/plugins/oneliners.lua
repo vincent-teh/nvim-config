@@ -2,7 +2,18 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		config = true,
+		config = function()
+			local autopairs = require("nvim-autopairs")
+			local Rule = require("nvim-autopairs.rule")
+			local cond = require("nvim-autopairs.conds")
+			autopairs.setup()
+
+			autopairs.add_rules({
+				Rule("$", "$", { "tex", "latex" }):with_move(function(opts)
+					return opts.char == "$"
+				end),
+			})
+		end,
 	},
 	{
 		"saghen/blink.cmp",
@@ -21,14 +32,12 @@ return {
 	},
 	{
 		"j-hui/fidget.nvim",
-		event = "VeryLazy",
+		enabled = false,
+		event = "LspAttach",
 		opts = {
-			notification = {
-				window = {
-					winblend = 0,
-				},
+			progress = {
+				ignore = { "ltex_plus" },
 			},
 		},
-		tag = "legacy",
 	},
 }

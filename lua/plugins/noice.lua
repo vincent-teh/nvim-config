@@ -5,6 +5,11 @@ return {
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify",
 	},
+	keys = {
+		{ "<leader>nm", "<cmd>Noice<cr>", desc = "Noice messages" },
+		{ "<leader>nl", "<cmd>Noice last<cr>", desc = "Noice last message" },
+		{ "<leader>nh", "<cmd>Noice history<cr>", desc = "Noice history" },
+	},
 	opts = {
 		cmdline = {
 			enabled = true, -- enables the floating commandline

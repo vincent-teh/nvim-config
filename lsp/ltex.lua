@@ -79,6 +79,7 @@ return {
   get_language_id = get_language_id,
   settings = {
     ltex = {
+      language = 'en-GB',
       enabled = enabled_ids,
     },
   },

@@ -39,5 +39,13 @@ return {
 			vim.g.mkdp_page_title = "「${name}」"
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
+		config = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "markdown",
+				callback = function(ev)
+					vim.keymap.set("n", "<localleader>p", "<cmd>MarkdownPreviewToggle<cr>", { buffer = ev.buf, desc = "Preview Markdown" })
+				end,
+			})
+		end,
 	},
 }

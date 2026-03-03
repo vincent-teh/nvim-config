@@ -6,7 +6,8 @@ return {
 		opts = {
 			ensure_installed = { "python", "bash", "vim" },
 			auto_install = true,
-			highlight = { enable = true, disable = { "csv" } },
+			ignore_install = { "latex" },
+			highlight = { enable = true, disable = { "csv", "latex" } },
 			-- highlight = { enable = true },
 			indent = { enable = true },
 			autotag = { enable = true },

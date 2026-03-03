@@ -11,10 +11,18 @@ return {
 			html = { "prettier" },
 			json = { "prettier" },
 			javascript = { "prettier" },
+			latex = { "latexindent" },
 			lua = { "lua_ls" },
 			markdown = { "prettier" },
 			python = { "black" },
 			sh = { "shfmt" },
+			tex = { "latexindent" },
+			toml = function(bufnr)
+				if vim.fn.expand("%:t") == "pyproject.toml" then
+					return { "pyproject-fmt" }
+				end
+				return { "taplo" }
+			end,
 			typescript = { "prettier" },
 			typst = { "typstyle" },
 			yaml = { "prettier" },
@@ -23,6 +31,11 @@ return {
 			astyle = {
 				command = "astyle",
 				args = { "--style=linux", "--max-code-length=80" },
+			},
+			latexindent = {
+				prepend_args = function()
+					return { "-m", "-l=" .. vim.fn.stdpath("config") .. "/latexindent.yaml" }
+				end,
 			},
 		},
 		-- Global options

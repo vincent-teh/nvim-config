@@ -147,12 +147,15 @@ return {
         forwardSearchAfter = false,
       },
       forwardSearch = {
-        executable = nil,
-        args = {},
+        executable = 'zathura',
+        args = { '--synctex-forward', '%l:1:%f', '%p' },
       },
       chktex = {
         onOpenAndSave = false,
         onEdit = false,
+      },
+      diagnostics = {
+        ignoredPatterns = { 'Unused label' },
       },
       diagnosticsDelay = 300,
       latexFormatter = 'latexindent',
@@ -165,6 +168,8 @@ return {
     },
   },
   on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
     for _, cmd in ipairs({
       { name = 'TexlabBuild', fn = buf_build, desc = 'Build the current buffer' },
       { name = 'TexlabForward', fn = buf_search, desc = 'Forward search from current position' },

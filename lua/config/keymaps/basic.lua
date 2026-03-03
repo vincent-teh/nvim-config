@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 -- Set leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- Basic mappings
 map("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode with jk" })
