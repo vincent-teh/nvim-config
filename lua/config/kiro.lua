@@ -31,20 +31,27 @@ local function send_to_kiro(text)
 end
 
 function M.send_selection()
-	local start_pos = vim.fn.getpos("'<")
-	local end_pos = vim.fn.getpos("'>")
-	local lines = vim.api.nvim_buf_get_lines(0, start_pos[2] - 1, end_pos[2], false)
+	local start_line = vim.fn.line("v")
+	local end_line = vim.fn.line(".")
+	if start_line > end_line then
+		start_line, end_line = end_line, start_line
+	end
+	local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
 	local text = table.concat(lines, "\n")
 	local ft = vim.bo.filetype
 
-	vim.ui.input({ prompt = "Ask Kiro about selection: " }, function(input)
-		if input and input ~= "" then
-			local prompt = string.format("%s\n\n```%s\n%s\n```", input, ft, text)
-			send_to_kiro(prompt)
-		else
-			local prompt = string.format("```%s\n%s\n```", ft, text)
-			send_to_kiro(prompt)
-		end
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+
+	vim.schedule(function()
+		vim.ui.input({ prompt = "Ask Kiro about selection: " }, function(input)
+			if input and input ~= "" then
+				local prompt = string.format("%s\n\n```%s\n%s\n```", input, ft, text)
+				send_to_kiro(prompt)
+			else
+				local prompt = string.format("```%s\n%s\n```", ft, text)
+				send_to_kiro(prompt)
+			end
+		end)
 	end)
 end
 
